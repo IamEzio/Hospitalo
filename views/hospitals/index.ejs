@@ -1,0 +1,76 @@
+<% layout('layouts/boilerplate')%>
+    <div class="mb-3" id="cluster-map" style="width: 100%; height: 600px"></div>
+    <button id="open-search-form" class="btn btn-primary">Search Hospitals</button>
+    <div class="search-form">
+        <form action="/hospitals/search">
+            <div class="mb-3">
+                <label class="form-label" for="title">Search By Title</label>
+                <input class="form-control" type="text" id="title" placeholder="Example: AIMS" name="title">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Search By Location</label>
+                <input class="form-control" type="text" id="location" placeholder="Example: Mumbai" name="location">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="doctor">Search By Doctors</label>
+                <select name="doctor" id="doctor" class="form-select">
+                    <option value="none">Select From Below</option>
+                    <option value="Oncologist">Oncologist</option>
+                    <option value="Dermatologist">Dermatologist</option>
+                    <option value="Neurologist">Neurologist</option>
+                    <option value="Cardiologist">Cardiologist</option>
+                    <option value="Dentist">Dentist</option>
+                    <option value="Pediatrician">Pediatrician</option>
+                    <option value="Psychiatrist">Psychiatrist</option>
+                    <option value="Endocrinologist">Endocrinologist</option>
+                    <option value="ENT">ENT (Ear-Nose-Throat)</option>
+                    <option value="Physician">Physician</option>
+                </select>
+            </div>
+            <button class="btn btn-info">Search</button>
+            <button id="close-search-form" class="btn btn-danger">Cancel</button>
+        </form>
+    </div>
+    <div class="row">
+        <% for (let hospital of hospitals) { %>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="card my-3 mx-3">
+                    <%if(hospital.images.length) {%>
+                        <img class="img-fluid" alt="Hospital Image" src="<%=hospital.images[0].url%>"
+                            style="min-height: 262px; max-height: 262px;">
+                        <% }else {%>
+                            <img class="img-fluid" alt="Hospital image" style="min-height: 262px; max-height: 262px;"
+                                src="https://res.cloudinary.com/storm123/image/upload/v1631201604/Hospitalo/hkjrzxo6tyikqnrw0clp.jpg">
+                            <% } %>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= hospital.title %>
+                                    </h5>
+                                    <p class="card-text">
+                                    <div class="d-flex justify-content-between flex-wrap">
+                                        <% for (let facility of hospital.facilities) { %>
+                                            <span class="border border-success rounded p-1 mb-2">
+                                                <%= facility %>
+                                            </span>
+                                            <% } %>
+                                    </div>
+                                    </p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <%= hospital.location %>
+                                    </li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="/hospitals/<%= hospital._id %>" class="card-link btn btn-primary">View</a>
+                                </div>
+                </div>
+            </div>
+            <% } %>
+    </div>
+
+    <script>
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const hospitalJSON = `<%- JSON.stringify(hospitals) %>`
+    </script>
+    <script src="/javascripts/clusterMap.js"></script>

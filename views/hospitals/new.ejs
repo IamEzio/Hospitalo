@@ -1,0 +1,162 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row" data-aos="fade">
+        <div class="col-md-5">
+            <img src="/img/addHospital.png" class="img-fluid" alt="Add Hospital Pic" data-aos="fade-right">
+        </div>
+        <div class="col-md-6" data-aos="fade-left">
+            <h1 class="text-center">New Hospital</h1>
+            <form action="/hospitals" method="POST" class="validated-form" enctype="multipart/form-data" novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="hospital[title]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="hospital[location]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="basic-url" class="form-label">Hospitals URL</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">https://example.com</span>
+                        <input type="text" class="form-control" name="hospital[url]" id="basic-url"
+                            aria-describedby="basic-addon3" required>
+                    </div>
+                </div>
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="image">Image URL</label>
+                    <input class="form-control" type="text" id="image" name="hospital[image]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div> -->
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="image">Image Url</label>
+                    <input class="form-control" type="text" id="image" name="campground[image]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div> -->
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="price">Campground Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                            aria-describedby="price-label" name="campground[price]" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div> -->
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Upload Image(s)</label>
+                    <input class="form-control " type="file" id="formFileMultiple" name="image" multiple>
+                </div>
+                <h4>Doctors Present </h4>
+                <div class="row mb-3">
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Oncologist" name="facilities[oncologist]"
+                            id="flexCheckDefault1">
+                        <label class="form-check-label" for="flexCheckDefault1">
+                            Oncologist
+                        </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Dermatologist"
+                            name="facilities[dermatologist]" id="flexCheckDefault2">
+                        <label class="form-check-label" for="flexCheckDefault2">
+                            Dermatologist
+                        </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Neurologist"
+                            name="facilities[neurologist]" id="flexCheckDefault3">
+                        <label class="form-check-label" for="flexCheckDefault3">
+                            Neurologist
+                        </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Cardiologist"
+                            name="facilities[cardiologist]" id="flexCheckDefault4">
+                        <label class="form-check-label" for="flexCheckDefault4">
+                            Cardiologist
+                        </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Dentist" name="facilities[dentist]"
+                            id="flexCheckDefault5">
+                        <label class="form-check-label" for="flexCheckDefault5">
+                            Dentist
+                        </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Pediatrician"
+                            name="facilities[pediatrician]" id="flexCheckDefault6">
+                        <label class="form-check-label" for="flexCheckDefault6">
+                            Pediatrician
+                        </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Psychiatrist"
+                            name="facilities[psychiatrist]" id="flexCheckDefault7">
+                        <label class="form-check-label" for="flexCheckDefault7">
+                            Psychiatrist
+                        </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Endocrinologist"
+                            name="facilities[endocrinologist]" id="flexCheckDefault8">
+                        <label class="form-check-label" for="flexCheckDefault8">
+                            Endocrinologist
+                        </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="ENT" name="facilities[ENT]"
+                            id="flexCheckDefault9">
+                        <label class="form-check-label" for="flexCheckDefault9">
+                            ENT (Ear-Nose-Throat)
+                        </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Physician" name="facilities[physician]"
+                            id="flexCheckDefault10">
+                        <label class="form-check-label" for="flexCheckDefault10">
+                            Physician
+                        </label>
+                    </div>
+                </div>
+                <h4>Hospital Timings</h4>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label class="mb-2" for="t1">Opening Time</label><br>
+                        <input type="time" id="t1" name="hospital[otime]" required>
+                    </div>
+                    <div class="col-6">
+                        <label class="mb-2" for="t2">Closing Time</label><br>
+                        <input type="time" id="t2" name="hospital[ctime]" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="hospital[description]"
+                        required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <!-- <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Upload Image(s)</label>
+                    <input class="form-control " type="file" id="formFileMultiple" name="image" multiple>
+                </div> -->
+                <div class="mb-3">
+                    <button class="btn btn-primary">Add Hospital</button>
+                </div>
+            </form>
+            <a href="/hospitals" class="btn btn-success btn-sm mb-3">All Hospitals</a>
+        </div>
+    </div>

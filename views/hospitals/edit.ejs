@@ -1,0 +1,160 @@
+<% layout('layouts/boilerplate')%>
+    <div class="row">
+        <h1 class="text-center">Edit Hospital</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/hospitals/<%= hospital._id %>?_method=PUT" method="POST" class="validated-form"
+                enctype="multipart/form-data" novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="hospital[title]"
+                        value="<%= hospital.title %>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="hospital[location]"
+                        value="<%= hospital.location %>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="basic-url" class="form-label">Hospitals URL</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">https://example.com</span>
+                        <input type="text" class="form-control" name="hospital[url]" id="basic-url"
+                            value="<%= hospital.url %> " aria-describedby="basic-addon3" required>
+                    </div>
+                </div>
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="image">Image URL:</label>
+                    <input class="form-control" type="text" id="image" name="hospital[image]"
+                        value="<%= hospital.image %> " required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div> -->
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Add Image(s)</label>
+                    <input class="form-control " type="file" id="formFileMultiple" name="image" multiple>
+                </div>
+
+                <h4>Doctors Present </h4>
+                <div class="row mb-3">
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Oncologist" name="facilities[oncologist]"
+                            id="flexCheckDefault1" <% if(hospital.facilities.includes("Oncologist")) {%> checked <% } %>
+                            >
+                            <label class="form-check-label" for="flexCheckDefault1">
+                                Oncologist
+                            </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Dermatologist"
+                            name="facilities[dermatologist]" id="flexCheckDefault2" <%
+                            if(hospital.facilities.includes("Dermatologist")) {%> checked <% } %>>
+                            <label class="form-check-label" for="flexCheckDefault2">
+                                Dermatologist
+                            </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Neurologist"
+                            name="facilities[neurologist]" id="flexCheckDefault3" <%
+                            if(hospital.facilities.includes("Neurologist")) {%> checked <% } %>>
+                            <label class="form-check-label" for="flexCheckDefault3">
+                                Neurologist
+                            </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Cardiologist"
+                            name="facilities[cardiologist]" id="flexCheckDefault4" <%
+                            if(hospital.facilities.includes("Cardiologist")) {%> checked <% } %>>
+                            <label class="form-check-label" for="flexCheckDefault4">
+                                Cardiologist
+                            </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Dentist" name="facilities[dentist]"
+                            id="flexCheckDefault5" <% if(hospital.facilities.includes("Dentist")) {%> checked <% } %>>
+                            <label class="form-check-label" for="flexCheckDefault5">
+                                Dentist
+                            </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Pediatrician"
+                            name="facilities[pediatrician]" id="flexCheckDefault6" <%
+                            if(hospital.facilities.includes("Pediatrician")) {%> checked <% } %>>
+                            <label class="form-check-label" for="flexCheckDefault6">
+                                Pediatrician
+                            </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Psychiatrist"
+                            name="facilities[psychiatrist]" id="flexCheckDefault7" <%
+                            if(hospital.facilities.includes("Psychiatrist")) {%>checked<% } %>>
+                            <label class="form-check-label" for="flexCheckDefault7">
+                                Psychiatrist
+                            </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Endocrinologist"
+                            name="facilities[endocrinologist]" id="flexCheckDefault8" <%
+                            if(hospital.facilities.includes("Endocrinologist")) {%>checked<% } %>>
+                            <label class="form-check-label" for="flexCheckDefault8">
+                                Endocrinologist
+                            </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="ENT" name="facilities[ENT]"
+                            id="flexCheckDefault9" <% if(hospital.facilities.includes("ENT")) {%> checked <% } %>>
+                            <label class="form-check-label" for="flexCheckDefault9">
+                                ENT (Ear-Nose-Throat)
+                            </label>
+                    </div>
+                    <div class="form-check col-6">
+                        <input class="form-check-input" type="checkbox" value="Physician" name="facilities[physician]"
+                            id="flexCheckDefault10" <% if(hospital.facilities.includes("Physician")) {%> checked <% } %>
+                            >
+                            <label class="form-check-label" for="flexCheckDefault10">
+                                Physician
+                            </label>
+                    </div>
+                </div>
+                <h4>Hospital Timings</h4>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label class="mb-2" for="t1">Opening Time</label><br>
+                        <input type="time" id="t1" name="hospital[otime]" value="<%= hospital.otime %>" required>
+                    </div>
+                    <div class="col-6">
+                        <label class="mb-2" for="t2">Closing Time</label><br>
+                        <input type="time" id="t2" name="hospital[ctime]" value="<%= hospital.ctime %>" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="hospital[description]"
+                        required><%= hospital.description %> </textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <% hospital.images.forEach((img,i)=>{ %>
+                    <img src="<%= img.thumbnail %>" class="img-thumbnail mb-3" alt="">
+                    <div class="form-check mb-3 d-inline-block">
+                        <input class="form-check-input" type="checkbox" id="image-<%= i %>" name="deleteImages[]"
+                            value="<%= img.filename %>">
+                        <label class="form-check-label" for="image-<%= i %>">
+                            Delete?
+                        </label>
+                    </div>
+                    <% }) %>
+                        <div class="mb-3">
+                            <button class="btn btn-primary">Update Hospital</button>
+                        </div>
+            </form>
+            <a href="/hospitals/<%= hospital._id %> ">Back to Hospital</a>
+        </div>
+    </div>

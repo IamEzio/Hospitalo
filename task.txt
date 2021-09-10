@@ -1,0 +1,1 @@
+1. Joi function validateCampground is in app.js and campgroundSchema is in Schemas.js.
