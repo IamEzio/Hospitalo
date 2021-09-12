@@ -24,12 +24,6 @@ module.exports.createHospital = async (req, res, next) => {
         limit: 1
     }).send();
 
-
-
-    // BEWARE OF ' SINCE IT WILL BREAK WHILE YOU ARE STRINGIFYING IT INTO JSON LATER
-    // ADD A CODE TO REMOVE '  !!!!!!!
-
-
     const hospital = req.body.hospital;
     const facilities = Object.values(req.body.facilities);
     hospital['facilities'] = facilities;
