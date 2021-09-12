@@ -82,12 +82,12 @@ module.exports.searchHospitals = async (req, res) => {
     let { title, location, doctor } = req.query;
     if (title)
         hospitals = hospitals.filter(function (el) {
-            return el.title == title;
+            return el.title.includes(title);
         })
 
     if (location)
         hospitals = hospitals.filter(function (el) {
-            return el.location == location;
+            return el.location.includes(location);
         })
 
     if (doctor !== 'none')
