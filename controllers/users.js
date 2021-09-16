@@ -8,7 +8,7 @@ module.exports.register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
         const user = new User({ username, email });
-        const registeredUser = await User.register(user, password);
+        const registeredUser = await User.register(user, password);  //methods provided by passport - itself verifies the data
         req.logIn(registeredUser, (err) => {
             if (err) return next(err);
             req.flash('success', 'Welcome to Hospitalo!');

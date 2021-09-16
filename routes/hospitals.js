@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const storage = require('../cloudinary');
-const multer = require('multer');
+const multer = require('multer');  //npm module to handle multipart/form data
 const upload = multer(storage)
 
 const Hospital = require('../models/hospital');

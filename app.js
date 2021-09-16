@@ -5,16 +5,16 @@ if (process.env.NODE_ENV !== "production") {
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const ejsMate = require('ejs-mate');
-const session = require('express-session');
-const flash = require('connect-flash');
-const passport = require('passport');
+const ejsMate = require('ejs-mate');  //to help make a boilerplate
+const session = require('express-session');  //to store session data in MongoStore
+const flash = require('connect-flash');  //to display flash messages
+const passport = require('passport');  //for authentication and authorization - adds many useful methods to req
 const localStrategy = require('passport-local');
-const ExpressError = require('./utils/ExpressError');
-const methodOverride = require('method-override');
+const ExpressError = require('./utils/ExpressError');  //custom made error template
+const methodOverride = require('method-override');   //to make delete, put and patch request from html forms
 const User = require('./models/user');
-const mongoSanitize = require('express-mongo-sanitize');
-const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');  //to prevent Mongo injection
+const helmet = require('helmet');  //to prevent Cross-site-scripting
 const MongoStore = require('connect-mongo');
 
 const userRoutes = require('./routes/users');
@@ -39,14 +39,14 @@ const app = express();
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join(__dirname, 'views'))  //setting up the views directory
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
     mongoSanitize({
-        replaceWith: '_',
+        replaceWith: '_',   //replacing '$' and ':' with '_' in the query
     }),
 );
 
