@@ -1,6 +1,7 @@
 # Hospitalo
 
 Website providing easy healthcare search functionalities.
+<a href="https://guarded-tundra-37059.herokuapp.com/">View Site</a>
 
 <img src="https://res.cloudinary.com/storm123/image/upload/v1632810656/Hospitalo/site_ss_sfmdz4.png">
 <img src="https://res.cloudinary.com/storm123/image/upload/v1632813241/Hospitalo/site_ss2_o8cbbs.png">
