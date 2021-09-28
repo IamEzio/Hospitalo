@@ -4,15 +4,15 @@ const Hospital = require('./models/hospital');
 const Review = require('./models/review')
 
 module.exports.isLoggedIn = (req, res, next) => {
-    if (!req.isAuthenticated()) {
-        req.session.returnTo = req.originalUrl;
+    if (!req.isAuthenticated()) {                   //methods provided by passport
+        req.session.returnTo = req.originalUrl;        //so that user may return to same page after log in
         req.flash('error', 'You must be signed in');
         return res.redirect('/login');
     }
     next();
 }
 
-module.exports.isAuthor = async (req, res, next) => {
+module.exports.isAuthor = async (req, res, next) => {   //checking if the user is the author of the hospital
     const { id } = req.params;
     const hospital = await Hospital.findById(id);
     if (!hospital.author.equals(req.user._id)) {
@@ -22,7 +22,7 @@ module.exports.isAuthor = async (req, res, next) => {
     next();
 }
 
-module.exports.isReviewAuthor = async (req, res, next) => {
+module.exports.isReviewAuthor = async (req, res, next) => {     //checking if the user is the author of the review
     const { id, reviewId } = req.params;
     const review = await Review.findById(reviewId);
     if (!review.author.equals(req.user._id)) {
@@ -40,7 +40,7 @@ module.exports.validateHospital = (req, res, next) => {
     }
     hospital['facilities'] = facilities;
     const data = { hospital };
-    const { error } = hospitalSchema.validate(data);
+    const { error } = hospitalSchema.validate(data);    //validating by JOI Schema
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)
@@ -50,7 +50,7 @@ module.exports.validateHospital = (req, res, next) => {
 }
 
 module.exports.validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
+    const { error } = reviewSchema.validate(req.body);    //validating by JOI Schema
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)

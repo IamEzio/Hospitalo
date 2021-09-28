@@ -10,6 +10,6 @@ const userSchema = new Schema({
     }
 })
 
-userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose);  //passport method to itself initialize username and password field
 
 module.exports = mongoose.model('User', userSchema);

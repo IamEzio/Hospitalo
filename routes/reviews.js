@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router({ mergeParams: true });
+const router = express.Router({ mergeParams: true });  //to get the params in the complete original url
 
 const catchAsync = require('../utils/catchAsync');
 const { validateReview, isLoggedIn, isReviewAuthor } = require('../middleware');
